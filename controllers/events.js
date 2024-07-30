@@ -9,7 +9,7 @@ const getEventos = async(req, res = response) => {
 
     res.json({
         ok: true,
-        msg: eventos,
+        eventos,
     })
 
 }
@@ -17,6 +17,7 @@ const getEventos = async(req, res = response) => {
 const crearEvento = async(req, res = response) => {
 
     const evento = new Evento(req.body);
+
 
     try {
 
@@ -38,11 +39,6 @@ const crearEvento = async(req, res = response) => {
     }
    
 
-    res.json({
-        ok: true,
-        msg: 'crearEvento'
-    })
-
 }
 
 
@@ -63,7 +59,7 @@ const actualizarEvento = async(req, res = response) => {
         if(evento.user.toString() !== uid){
             return res.status(401).json({
                 ok: false,
-                msg: 'No tiene privilegio de editar este evento'
+                msg: 'No tiene el privilegio de editar este evento'
             })
         }
 
@@ -110,7 +106,7 @@ const eliminarEvento = async(req, res = response) => {
         if(evento.user.toString() !== uid){
             return res.status(401).json({
                 ok: false,
-                msg: 'No tiene privilegio de eliminar este evento'
+                msg: 'No tiene el privilegio de eliminar este evento'
             })
         }
 
