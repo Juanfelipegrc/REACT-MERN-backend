@@ -26,11 +26,18 @@ app.use(express.static('public'))
 app.use(express.json());
 
 // Rutas
+app.use(express.json());
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 app.use('/api/auth', require('./routes/auth'));
 
 app.use('/api/events', require('./routes/events'));
 
-app.use('*', (req, res) => {
+
+
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 })
 // TODO: CRUD: Eventos
